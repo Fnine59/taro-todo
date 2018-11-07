@@ -14,13 +14,30 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/tomato/tomato'
     ],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarBackgroundColor: '#C5D9E8',
+      navigationBarTitleText: '待办清单',
+      navigationBarTextStyle: 'white'
+    },
+    tabBar: {
+      backgroundColor: '#FAFBFC',
+      color: '#C5D9E8',
+      selectedColor: '#346FC2',
+      list: [{
+        text: '待办',
+        pagePath: 'pages/index/index',
+        iconPath: './assets/tabBar/todo.png',
+        selectedIconPath: './assets/tabBar/todo-select.png'
+      },
+      {
+        text: '番茄',
+        pagePath: 'pages/tomato/tomato',
+        iconPath: './assets/tabBar/tomato.png',
+        selectedIconPath: './assets/tabBar/tomato-select.png'
+      }]
     }
   }
 
@@ -34,8 +51,6 @@ class App extends Component {
 
   componentDidCatchError () {}
 
-  // 在 App 类中的 render() 函数没有实际作用
-  // 请勿修改此函数
   render () {
     return (
       <Provider store={store}>

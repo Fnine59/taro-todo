@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "todoApp",
   "description": "First taro project for exercise",
-  "appid": "touristappid",
+  "appid": "wxccc79a968ede0e59",
   "setting": {
     "urlCheck": true,
     "es6": false,
