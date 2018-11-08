@@ -78,7 +78,7 @@ class Index extends Component {
 
   render() {
     return (
-      <View class='todo-card'>
+      <View class='index'>
         <TodoCardList dataList={this.state.todoList} />
       </View>
     );
