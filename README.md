@@ -13,7 +13,7 @@
 
 属性名 | 类型 | 默认值 | 可选值 | 说明
 ---|---|---|---|---
-size | string | 'default' | small：较小尺寸<br/>default：默认大小<br/>default：较大尺寸<br/> | 设置复选框的大小
+size | string | 'default' | `small`：较小尺寸<br/>`default`：默认大小<br/>`large`：较大尺寸<br/> | 设置复选框的大小
 status | bool | false | true：默认选中<br>false: 默认未选中 | 设置复选框的初始状态
 onClick(status) | func | --- | --- | 暴露出来的复选框点击事件，会在执行完复选框点击样式变更等操作后调用，入参为status，即复选框当前的选中状态
 
