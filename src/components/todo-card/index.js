@@ -39,7 +39,6 @@ export default class TodoCard extends Component {
           </View>
         </View>
         <FnCheckbox 
-          className='todo-card-checkbox' 
           status={this.props.status} 
           size='default'
           onClick={this.handleClick}

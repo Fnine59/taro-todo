@@ -49,7 +49,7 @@ FnCheckbox.defaultProps = {
 };
 
 FnCheckbox.propTypes = {
-  size: PropTypes.string,
   status: PropTypes.bool,
+  size: PropTypes.string,
   onClick: PropTypes.func,
 };
