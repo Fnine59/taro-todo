@@ -1,51 +1,88 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
+import Taro, { Component } from "@tarojs/taro";
+import { View } from "@tarojs/components";
+import { connect } from "@tarojs/redux";
 
-import { add, minus, asyncAdd } from '../../actions/counter'
+import TodoCardList from "../../components/todo-card-list";
+import "./index.less";
 
-import './index.less'
-
-
-@connect(({ todo }) => ({
-  todo
-}), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
-}))
+@connect(
+  ({ todo }) => ({
+    todo
+  }),
+  dispatch => ({
+    // add () {
+    //   dispatch(add())
+    // },
+    // dec () {
+    //   dispatch(minus())
+    // },
+    // asyncAdd () {
+    //   dispatch(asyncAdd())
+    // }
+  })
+)
 class Index extends Component {
-
-  config = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todoList: [
+        {
+          id: 0,
+          title: "去吃午饭",
+          desc: "eat lunch",
+          status: false,
+        },
+        {
+          id: 1,
+          title: "eat dinner",
+          desc: "去吃晚饭",
+          status: true,
+        },
+        {
+          id: 2,
+          title: "eat dinner",
+          desc: "去吃晚饭",
+          status: true,
+        },
+        {
+          id: 3,
+          title: "eat dinner",
+          desc: "去吃晚饭",
+          status: true,
+        },
+        {
+          id: 4,
+          title: "eat dinner",
+          desc: "去吃晚饭",
+          status: true,
+        },
+        {
+          id: 5,
+          title: "eat dinner",
+          desc: "去吃晚饭",
+          status: true,
+        }
+      ]
+    };
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props, nextProps);
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  render () {
+  render() {
     return (
-      <View className='index'>
-        <Button className='add_btn' onClick={this.props.add}>+</Button>
-        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
-        <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
-        <View><Text>{this.props.todo.num}</Text></View>
-        <View><Text>Hello, World</Text></View>
+      <View class='todo-card'>
+        <TodoCardList dataList={this.state.todoList} />
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

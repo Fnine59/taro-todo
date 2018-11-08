@@ -6,19 +6,11 @@ import { connect } from '@tarojs/redux'
 @connect(({ tomato }) => ({
   tomato
 }), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
 }))
 class Tomato extends Component {
 
   config = {
+    navigationBarTitleText: '番茄计时'
   }
 
   componentWillReceiveProps (nextProps) {
@@ -33,7 +25,7 @@ class Tomato extends Component {
 
   render () {
     return (
-      <View className='index'>
+      <View className='tomato'>
       </View>
     )
   }

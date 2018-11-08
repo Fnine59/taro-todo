@@ -1,0 +1,38 @@
+@import '../../theme/vars.less';
+
+.todo-card {
+  display: flex;
+  width: 568px;
+  margin: 50px 50px;
+  padding: 20px 40px;
+  border: 1px solid @border-uncheck-color;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+
+  &-checked{
+    border: 1px solid @border-check-color;
+  }
+
+  &-content {
+    display: flex;
+    align-items: baseline;
+
+    &-title {
+      font-size: 36px;
+      margin: 0px 30px 5px 30px;
+      color: @todo-title;
+    }
+
+    &-title-check {
+      text-decoration: line-through;
+      color: @todo-desc;
+    }
+
+    &-desc {
+      margin-left: 30px;
+      font-size: 28px;
+      color: @todo-desc;
+    }
+  }
+}

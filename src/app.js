@@ -15,7 +15,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      'pages/tomato/tomato'
+      'pages/tomato/index'
     ],
     window: {
       navigationBarBackgroundColor: '#C5D9E8',
@@ -34,7 +34,7 @@ class App extends Component {
       },
       {
         text: '番茄',
-        pagePath: 'pages/tomato/tomato',
+        pagePath: 'pages/tomato/index',
         iconPath: './assets/tabBar/tomato.png',
         selectedIconPath: './assets/tabBar/tomato-select.png'
       }]
