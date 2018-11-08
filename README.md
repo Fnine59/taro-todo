@@ -1,4 +1,4 @@
-# todoMiniProgram
+# taro-todo
 
     基于 taro 1.1.1 版本搭建的todo list小程序。
     taro是一个支持一套代码编译为多端代码的框架，现已支持微信小程序、支付宝小程序、百度小程序、H5及React Native。
@@ -29,32 +29,9 @@ onClick(status) | func | --- | --- | 暴露出来的复选框点击事件，会�
 ---|---|---|---|---
 title | string | '待办事项' | 任意字符串 | 卡片的标题 
 desc | string | '描述信息' | 任意字符串 | 卡片描述信息
-status | bool | false | true：状态已完成<br>false: 状态未完成 | 用于指定卡片显示为已完成状态/未完成状态
-
-### 待办卡片列表 TodoCardList
-
-该组件通用性较差，为针对本次项目进行封装的组件。
-
-属性名 | 类型 | 默认值 | 可选值 | 说明
----|---|---|---|---
-dataList | array | 如下 | 满足结构的任意数组 | 待办列表信息，每条信息中必含且仅可含`title`,`desc`,`status`,`id`四项。 
-
-```js
-[{
-    title: '待办事项A',
-    desc: '描述信息B',
-    status: false,
-    id: 0
-},{
-    title: '待办事项B',
-    desc: '描述信息B',
-    status: false,
-    id: 1
-}]
-```
+status | bool | false | true：状态已完成<br>false: 状态未完成 | 用于指定卡片显示为已完成状态/未完成状态\
 
 ## 待办事项
 
 - 修改待办卡片组件图标支持修改
-- 尝试取消封装待办卡片列表组件
 - 番茄计时功能

@@ -2,7 +2,8 @@ import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { connect } from "@tarojs/redux";
 
-import TodoCardList from "../../components/todo-card-list";
+// import TodoCardList from "../../components/todo-card-list";
+import List from "./list"
 import "./index.less";
 
 @connect(
@@ -79,7 +80,8 @@ class Index extends Component {
   render() {
     return (
       <View class='index'>
-        <TodoCardList dataList={this.state.todoList} />
+        {/* <TodoCardList dataList={this.state.todoList} /> */}
+        <List dataList={this.state.todoList} ></List>
       </View>
     );
   }

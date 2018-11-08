@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { PropTypes } from 'nervjs';
 
-import TodoCard from '../todo-card';
+import TodoCard from '../../components/todo-card';
 
 export default class TodoCardList extends Component {
 
