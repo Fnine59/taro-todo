@@ -1,9 +1,10 @@
 {
-  "name": "todoApp",
+  "name": "todo-app",
   "version": "1.0.0",
   "private": true,
   "description": "First taro project for exercise",
   "scripts": {
+    "start": "taro build --type weapp",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
