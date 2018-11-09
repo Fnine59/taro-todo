@@ -4,7 +4,7 @@
   "private": true,
   "description": "First taro project for exercise",
   "scripts": {
-    "start": "taro build --type weapp",
+    "start": "npm run build:weapp -- --watch",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
