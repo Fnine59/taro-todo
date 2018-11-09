@@ -1,10 +1,10 @@
-import Taro, { Component } from "@tarojs/taro";
-import PropTypes from "prop-types";
-import { View } from "@tarojs/components";
+import Taro from "@tarojs/taro"
+import PropTypes from "prop-types"
+import { View } from "@tarojs/components"
 
-import "./index.less";
+import "./index.less"
 
-export default class FnCheckbox extends Component {
+export default class FnCheckbox extends Taro.Component {
   constructor(props) {
     super(props);
     this.state = {

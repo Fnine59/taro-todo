@@ -1,12 +1,12 @@
-import Taro, { Component } from "@tarojs/taro";
-import PropTypes from "prop-types";
-import { View } from "@tarojs/components";
-import { AtIcon } from "taro-ui";
+import Taro from "@tarojs/taro"
+import PropTypes from "prop-types"
+import { View } from "@tarojs/components"
+import { AtIcon } from "taro-ui"
 
-import FnCheckbox from "../fn-checkbox";
-import "./index.less";
+import FnCheckbox from "../fn-checkbox"
+import "./index.less"
 
-export default class TodoCard extends Component {
+export default class TodoCard extends Taro.Component {
   constructor(props) {
     super(props);
     this.state = {
