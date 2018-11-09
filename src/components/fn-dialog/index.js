@@ -31,12 +31,24 @@ export default class FnDialog extends Taro.Component {
   handleCancel() {
     if(this.props.onCancel){
       this.props.onCancel()
+    }
+    if(this.props.whetherDistory){
+      this.setState({
+        titleValue: '',
+        descValue: '',
+      })
     } 
   }
 
   handleConfirm() {
     if(this.props.onConfirm){
       this.props.onConfirm(this.state.titleValue, this.state.descValue)
+    } 
+    if(this.props.whetherDistory){
+      this.setState({
+        titleValue: '',
+        descValue: '',
+      })
     } 
   }
 
@@ -61,11 +73,13 @@ export default class FnDialog extends Taro.Component {
             placeholder={this.props.titleHolder} 
             value={this.state.titleValue}
             onChange={this.handleChangeTitle}
+            maxlength={this.props.titleMaxLength ? this.props.titleMaxLength : 999}
           ></AtInput>
           <AtInput 
             placeholder={this.props.descHolder} 
             value={this.state.descValue}
             onChange={this.handleChangeDesc}
+            maxlength={this.props.descMaxLength ? this.props.descMaxLength : 999}
           ></AtInput>
         </AtModalContent>
         <AtModalAction>
@@ -88,10 +102,14 @@ FnDialog.defaultProps = {
   titleHolder: "请输入标题",
   descHolder: "请输入描述信息",
   modalVisible: false,
+  whetherDistory: true,
 };
 
 FnDialog.propTypes = {
   modalVisible: PropTypes.bool,
+  whetherDistory: PropTypes.bool,
+  titleMaxLength: PropTypes.number,
+  descMaxLength: PropTypes.number,
   title: PropTypes.string,
   cancelText: PropTypes.string,
   confirmText: PropTypes.string,

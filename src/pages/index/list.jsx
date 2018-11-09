@@ -31,17 +31,7 @@ export default class TodoCardList extends Taro.Component {
 }
 
 TodoCardList.defaultProps = {
-  dataList: [{
-    title: '待办事项A',
-    desc: '描述信息A',
-    status: false,
-    id: 0
-  },{
-    title: '待办事项B',
-    desc: '描述信息B',
-    status: false,
-    id: 1
-  }]
+  dataList: []
 }
 
 TodoCardList.propTypes = {

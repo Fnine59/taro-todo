@@ -8,6 +8,7 @@ import {
   hideModal
 } from "../../redux/actions/todo"
 
+import createId from '../../utils/createId'
 import List from "./list"
 import FnDialog from '../../components/fn-dialog'
 import "./index.less"
@@ -17,8 +18,8 @@ import "./index.less"
     todo
   }),
   dispatch => ({
-    add() {
-      dispatch(add())
+    onAdd(payload) {
+      dispatch(add(payload))
     },
     onShowModal() {
       dispatch(showModal())
@@ -34,31 +35,10 @@ class Index extends Taro.Component {
       "wux-floating-button": "../../components/wux/dist/floating-button/index",
     }
   };
-
+  
   constructor(props) {
     super(props);
     this.state = {
-      todoList: [
-        {
-          id: 0,
-          title: "去吃午饭",
-          desc: "eat lunch",
-          status: false
-        },
-        {
-          id: 1,
-          title: "eat dinner",
-          desc: "去吃晚饭",
-          status: true
-        },
-        {
-          id: 2,
-          title: "learn taro",
-          desc: "学习taro",
-          status: true
-        }
-      ],
-      
     };
   }
 
@@ -83,7 +63,6 @@ class Index extends Taro.Component {
     }
   }
 
-
   /**
    * 弹窗“取消”按钮事件
    */
@@ -91,20 +70,28 @@ class Index extends Taro.Component {
     this.props.onHideModal();
   }
 
-
   handleModalConfirm(title, desc) {
-    console.log(title, desc)
-    this.props.onHideModal();
+    const item = {
+      data: {
+        title,
+        desc,
+        id: createId(),
+        status: false,
+      },
+      modalVisible: false,
+    }
+    this.props.onAdd(item);
   }
 
   render() {
     const {
       modalVisible,
       buttons,
+      todoList,
     } = this.props.todo;
     return (
       <View class='index'>
-        <List dataList={this.state.todoList} />
+        <List dataList={todoList} />
         <wux-floating-button
           position='bottomRight'
           theme='positive'
@@ -114,8 +101,10 @@ class Index extends Taro.Component {
         <FnDialog
           modalVisible={modalVisible}
           title='待办事项'
-          titleHolder='请输入待办事项'
-          descHolder='请输入描述信息'
+          titleHolder='请输入20字以内待办事项'
+          descHolder='请输入100字以内描述信息'
+          titleMaxLength={20}
+          descMaxLength={100}
           onCancel={this.handleModalCancel}
           onConfirm={this.handleModalConfirm}
         ></FnDialog>

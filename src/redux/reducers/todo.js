@@ -28,9 +28,11 @@ export default function todo(state = INITIAL_STATE, action) {
   const { type, payload } = action;
   switch(type) {
     case ADD:
+      const newList = [...state.todoList, payload.data];
       return {
         ...state,
-        ...payload,
+        todoList: newList,
+        modalVisible: payload.modalVisible,
       }
     case SHOWMODAL:
       return {
