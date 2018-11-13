@@ -11,21 +11,21 @@ import {
 
 export default class FnDialog extends Taro.Component {
   config = {
-    usingComponents: {
-      "wux-cell-group": "../../components/wux/dist/cell-group/index",
-      "wux-cell": "../../components/wux/dist/cell/index",
-      "wux-input": "../../components/wux/dist/input/index",
-      "wux-textarea": "../../components/wux/dist/textarea/index"
-    }
   };
 
   constructor(props) {
     super(props)
-    console.log('props', props)
     this.state = {
       titleValue: '',
       descValue: '',
     };
+  }
+
+  componentWillReceiveProps (nextProps) {
+  }
+
+  componentWillUnmount() {
+    console.log('unmount')
   }
 
   handleCancel() {
@@ -63,10 +63,24 @@ export default class FnDialog extends Taro.Component {
       descValue: value
     })
   }
+    
+  /**
+   * 因为获取不到点击蒙层关闭的回调事件
+   * 因此使用这个方法在无论因为什么原因每次关闭时，都将组件state中的modalVisible更新为false
+   * 以保证组件能够由数据驱动重新渲染
+   */
+  handleClose() {
+    if(this.props.onCancel){
+      this.props.onCancel();
+    }
+  }
 
   render() {
     return (
-      <AtModal isOpened={this.props.modalVisible}>
+      <AtModal 
+        isOpened={this.props.modalVisible}
+        onClose={this.handleClose}
+      >
         <AtModalHeader>{this.props.title}</AtModalHeader>
         <AtModalContent>
           <AtInput 

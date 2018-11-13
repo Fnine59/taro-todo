@@ -103,6 +103,7 @@ class Index extends Taro.Component {
           title='待办事项'
           titleHolder='请输入20字以内待办事项'
           descHolder='请输入100字以内描述信息'
+          confirmText='添加'
           titleMaxLength={20}
           descMaxLength={100}
           onCancel={this.handleModalCancel}
