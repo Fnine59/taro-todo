@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { PropTypes } from 'nervjs';
+import PropTypes from 'prop-types'
 
 import TodoCard from '../../components/todo-card';
 

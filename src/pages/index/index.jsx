@@ -13,8 +13,8 @@ import {
 
 import createId from '../../utils/util'
 import FnDialog from '../../components/fn-dialog'
+import Modal from '../../components/fn-confirm-dialog'
 import List from "./list"
-import Modal from './modal'
 import "./index.less"
 
 @connect(
@@ -109,7 +109,6 @@ class Index extends Taro.Component {
     this.props.onHideModal({
       modalType: 'clear',
     });
-    this.props.onGetList();
   }
   
   handleClickItem(item, status) {

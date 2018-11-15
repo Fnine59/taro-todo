@@ -44,20 +44,44 @@ export function clearStorage(key) {
  * 用于生成唯一ID
  */
 export default function createId() {
-  let stackTop = Taro.getStorageSync('fn-todo-id');
+  let stackTop = getStorageSync('fn-todo-id');
   if(stackTop === ''){
-    Taro.setStorage({ key: 'fn-todo-id', data: 0 });
+    setStorage('fn-todo-id', 0);
     return 0;
   } else {
-    Taro.setStorage({ key: 'fn-todo-id', data: stackTop + 1 });
+    setStorage('fn-todo-id', stackTop + 1);
     return stackTop + 1;
   }
 }
 
+/**
+ * 将数组中每一项的id作为该项下标，用于提高查询效率
+ * @param {Array} arr 
+ */
 export function idToHash(arr) {
   let confirmArr = [];
   arr.forEach(element => {
     confirmArr[element.id] = element;
   })
   return confirmArr;
+}
+
+export function millToMinute(millisecond) {
+  const second = Math.floor(millisecond / 1000);
+  console.log('得到的秒数', second);
+  const minute = Math.floor(second / 60);
+  console.log('得到的分钟数', minute);
+  const secondWithoutMinute = second - minute * 60;
+  console.log('得到的用于显示的秒数', secondWithoutMinute);
+  let minuteStr = minute.toString();
+  if(minuteStr.length < 2) {
+    minuteStr = '0' + minuteStr;
+  }
+  let secondStr = secondWithoutMinute.toString();
+  if(secondStr.length < 2) {
+    secondStr = '0' + secondStr;
+  }
+  const timeStr = minuteStr + ':' + secondStr;
+  console.log('展示用串', timeStr);
+  return timeStr;
 }

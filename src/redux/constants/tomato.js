@@ -1,2 +1,6 @@
-export const MINUS = 'MINUS'
-export const START = 'START'
+export const INIT = 'INIT'
+export const STARTWORK = 'STARTWORK'
+export const STOPWORK = 'STOPWORK'
+export const COMPUTED = 'COMPUTED'
+export const SHOWMODAL = 'SHOWTMODAL'
+export const HIDEMODAL = 'HIDETMODAL'

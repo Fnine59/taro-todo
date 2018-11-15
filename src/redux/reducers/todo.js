@@ -74,6 +74,7 @@ export default function todo(state = INITIAL_STATE, action) {
         todoList: oldList,
       }
     case SHOWMODAL:
+      console.log('todo的showmodal')
       if(payload.modalType === 'add') {
         return {
           ...state,
@@ -86,6 +87,7 @@ export default function todo(state = INITIAL_STATE, action) {
         }
       }
     case HIDEMODAL: 
+      console.log('todo的hidemodal')
       if(payload.modalType === 'add') {
         return {
           ...state,
@@ -112,6 +114,7 @@ export default function todo(state = INITIAL_STATE, action) {
       })
       return {
         ...state,
+        todoList: []
       }
     default: 
       return state

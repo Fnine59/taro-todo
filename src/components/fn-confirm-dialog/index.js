@@ -8,7 +8,7 @@ import {
   AtModalAction,
 } from "taro-ui"
 
-export default class FnDialog extends Taro.Component {
+export default class Modal extends Taro.Component {
   config = {
   };
 
@@ -66,7 +66,7 @@ export default class FnDialog extends Taro.Component {
   }
 }
 
-FnDialog.defaultProps = {
+Modal.defaultProps = {
   title: "标题",
   cancelText: "取消",
   confirmText: "确认",
@@ -74,7 +74,7 @@ FnDialog.defaultProps = {
   modalVisible: false,
 };
 
-FnDialog.propTypes = {
+Modal.propTypes = {
   modalVisible: PropTypes.bool,
   title: PropTypes.string,
   cancelText: PropTypes.string,

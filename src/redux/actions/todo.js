@@ -15,6 +15,7 @@ export const add = (payload) => {
 }
 
 export const showModal = (payload) => {
+  console.log('todo的showModal')
   return {
     type: SHOWMODAL,
     payload
@@ -22,6 +23,7 @@ export const showModal = (payload) => {
 }
 
 export const hideModal = (payload) => {
+  console.log('todo的hideModal')
   return {
     type: HIDEMODAL,
     payload
