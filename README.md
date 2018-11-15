@@ -29,8 +29,7 @@ onClick(status) | func | --- | --- | 暴露出来的复选框点击事件，会�
 ---|---|---|---|---
 title | string | '待办事项' | 任意字符串 | 卡片的标题 
 desc | string | '描述信息' | 任意字符串 | 卡片描述信息
-status | bool | false | true：状态已完成<br>false: 状态未完成 |
-用于指定卡片显示为已完成状态/未完成状态
+status | bool | false | true：状态已完成<br>false: 状态未完成 | 用于指定卡片显示为已完成状态/未完成状态
 onClick(item, status) | func | --- | --- | 暴露出来的待办 事项卡片复选框点击事件，会在执行完待办事项卡片点击样式变更等操作后调用，回传两个参数分别为item和status，即该卡片接收到的数据项及当前选中状态，status为true即为被选中
 
 ## 开发项完成情况
