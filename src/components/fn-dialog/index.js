@@ -95,6 +95,12 @@ export default class FnDialog extends Taro.Component {
             onChange={this.handleChangeDesc}
             maxlength={this.props.descMaxLength ? this.props.descMaxLength : 999}
           ></AtInput>
+          {/* {this.props.modalVisible &&<AtTextarea
+            placeholder={this.props.descHolder} 
+            value={this.state.descValue}
+            onChange={this.handleChangeDesc}
+            maxlength={this.props.descMaxLength ? this.props.descMaxLength : 999}
+          />} */}
         </AtModalContent>
         <AtModalAction>
           <Button 

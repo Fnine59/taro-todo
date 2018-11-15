@@ -26,6 +26,9 @@ export default class TodoCard extends Taro.Component {
       iconColor: `${status ? '#B2B2B2' :'#78A4FA'}`,
       cardClass: `${status ? 'todo-card todo-card-checked' : 'todo-card'}`
     })
+    if(this.props.onClick){
+      this.props.onClick(this.props.item, status);
+    }
   }
 
   render() {
@@ -49,13 +52,16 @@ export default class TodoCard extends Taro.Component {
 }
 
 TodoCard.defaultProps = {
+  status: false,
   title: "待办事项",
   desc: "描述信息",
-  status: false,
+  item: {},
 };
 
 TodoCard.propTypes = {
+  status: PropTypes.bool,
   title: PropTypes.string,
   desc: PropTypes.string,
-  status: PropTypes.bool,
+  item: PropTypes.object,
+  onClick: PropTypes.func,
 };

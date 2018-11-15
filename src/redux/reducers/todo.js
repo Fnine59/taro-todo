@@ -1,7 +1,13 @@
+import Taro from '@tarojs/taro'
+
+import { getStorageSync, setStorage, clearStorage, idToHash } from '../../utils/util'
 import { 
   ADD,
   SHOWMODAL,
-  HIDEMODAL
+  HIDEMODAL,
+  CLEARTODO,
+  GETLIST,
+  CHECKITEM
 } from '../constants/todo'
 
 const INITIAL_STATE = {
@@ -10,6 +16,10 @@ const INITIAL_STATE = {
     {
       label: "添加待办",
       icon: "data:image/png;base64,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",
+    },
+    {
+      label: "清空待办",
+      icon: "data:image/png;base64,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",
     },
     {
       label: "设置",
@@ -22,27 +32,86 @@ const INITIAL_STATE = {
     },
   ],
   modalVisible: false,
+  modalType: 'add',
+  clearModalVisible: false,
 }
 
 export default function todo(state = INITIAL_STATE, action) {
   const { type, payload } = action;
   switch(type) {
+    case GETLIST:
+      let localList = [];
+      localList = getStorageSync('fn-todo-datalist');
+      return {
+        ...state,
+        todoList: idToHash(localList ? localList : []),
+      }
     case ADD:
-      const newList = [...state.todoList, payload.data];
+      const newList = idToHash([...state.todoList, payload.data]);
+      setStorage('fn-todo-datalist', newList).catch(() => {
+        Taro.showToast({
+          title: '添加失败',
+          icon: 'none',
+        })
+      })
       return {
         ...state,
         todoList: newList,
         modalVisible: payload.modalVisible,
       }
-    case SHOWMODAL:
+    case CHECKITEM:
+      const oldList = [...state.todoList];
+      const id = payload.item.id;
+      oldList[id].status = payload.status;
+      setStorage('fn-todo-datalist', oldList).catch(() => {
+        Taro.showToast({
+          title: '修改失败',
+          icon: 'none',
+        })
+      })
       return {
         ...state,
-        modalVisible: true
+        todoList: oldList,
+      }
+    case SHOWMODAL:
+      if(payload.modalType === 'add') {
+        return {
+          ...state,
+          modalVisible: true
+        }
+      } else if(payload.modalType === 'clear') {
+        return {
+          ...state,
+          clearModalVisible: true
+        }
       }
     case HIDEMODAL: 
+      if(payload.modalType === 'add') {
+        return {
+          ...state,
+          modalVisible: false
+        }
+      } else if(payload.modalType === 'clear') {
+        return {
+          ...state,
+          clearModalVisible: false
+        }
+      }
+    case CLEARTODO:
+      clearStorage('fn-todo-datalist').catch(() => {
+        Taro.showToast({
+          title: '清空失败',
+          icon: 'none',
+        })
+      })
+      clearStorage('fn-todo-id').catch(() => {
+        Taro.showToast({
+          title: '清空失败',
+          icon: 'none',
+        })
+      })
       return {
         ...state,
-        modalVisible: false,
       }
     default: 
       return state

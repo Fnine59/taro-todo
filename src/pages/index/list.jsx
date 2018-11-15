@@ -11,14 +11,22 @@ export default class TodoCardList extends Taro.Component {
     this.state = {}
   }
 
+  handleClick(item, status) {
+    if(this.props.onClickItem){
+      this.props.onClickItem(item, status);
+    }
+  }
+
   render() {
     const dataList = this.props.dataList
     const listItem = dataList.map((item) => {
       return <TodoCard
         key={String(item.id)}
+        item={item}
         title={item.title}
         desc={item.desc}
         status={item.status}
+        onClick={this.handleClick}
       ></TodoCard>
     })
     return (
@@ -36,4 +44,5 @@ TodoCardList.defaultProps = {
 
 TodoCardList.propTypes = {
   dataList: PropTypes.array,
+  onClickItem: PropTypes.func,
 }

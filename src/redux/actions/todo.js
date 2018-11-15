@@ -1,7 +1,10 @@
 import {
   ADD,
   SHOWMODAL,
-  HIDEMODAL
+  HIDEMODAL,
+  CLEARTODO,
+  GETLIST,
+  CHECKITEM,
 } from '../constants/todo'
 
 export const add = (payload) => {
@@ -11,14 +14,35 @@ export const add = (payload) => {
   }
 }
 
-export const showModal = () => {
+export const showModal = (payload) => {
   return {
-    type: SHOWMODAL
+    type: SHOWMODAL,
+    payload
   }
 }
 
-export const hideModal = () => {
+export const hideModal = (payload) => {
   return {
-    type: HIDEMODAL
+    type: HIDEMODAL,
+    payload
+  }
+}
+
+export const clearTodo = () => {
+  return {
+    type: CLEARTODO,
+  }
+}
+
+export const getList = () => {
+  return {
+    type: GETLIST,
+  }
+}
+
+export const checkItem = (payload) => {
+  return {
+    type: CHECKITEM,
+    payload,
   }
 }

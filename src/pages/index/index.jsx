@@ -5,12 +5,16 @@ import { connect } from "@tarojs/redux"
 import { 
   add,
   showModal,
-  hideModal
+  hideModal,
+  clearTodo,
+  getList,
+  checkItem
 } from "../../redux/actions/todo"
 
-import createId from '../../utils/createId'
-import List from "./list"
+import createId from '../../utils/util'
 import FnDialog from '../../components/fn-dialog'
+import List from "./list"
+import Modal from './modal'
 import "./index.less"
 
 @connect(
@@ -21,11 +25,20 @@ import "./index.less"
     onAdd(payload) {
       dispatch(add(payload))
     },
-    onShowModal() {
-      dispatch(showModal())
+    onShowModal(payload) {
+      dispatch(showModal(payload))
     },
-    onHideModal() {
-      dispatch(hideModal())
+    onHideModal(payload) {
+      dispatch(hideModal(payload))
+    },
+    onClear() {
+      dispatch(clearTodo())
+    },
+    onGetList() {
+      dispatch(getList())
+    },
+    onCheckItem(payload) {
+      dispatch(checkItem(payload))
     }
   })
 )
@@ -42,24 +55,19 @@ class Index extends Taro.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('test',this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-
   /**
    * 点击浮动按钮的“添加待办”项
    * @param {event} e 
    */
   handleClickOpt(e) {
     if(e.detail.index === 0) { // 如果是添加待办选项
-      this.props.onShowModal()
+      this.props.onShowModal({
+        modalType: 'add',
+      })
+    } else if (e.detail.index === 1) { // 如果是清空待办列表选项
+      this.props.onShowModal({
+        modalType: 'clear',
+      })
     }
   }
 
@@ -67,9 +75,16 @@ class Index extends Taro.Component {
    * 弹窗“取消”按钮事件
    */
   handleModalCancel() {
-    this.props.onHideModal();
+    this.props.onHideModal({
+      modalType: 'add',
+    });
   }
 
+  /**
+   * 
+   * @param {string} title 
+   * @param {string} desc 
+   */
   handleModalConfirm(title, desc) {
     const item = {
       data: {
@@ -83,15 +98,47 @@ class Index extends Taro.Component {
     this.props.onAdd(item);
   }
 
+  handleCModalCancle() {
+    this.props.onHideModal({
+      modalType: 'clear'
+    })
+  }
+
+  handleCModalConfirm() {
+    this.props.onClear();
+    this.props.onHideModal({
+      modalType: 'clear',
+    });
+    this.props.onGetList();
+  }
+  
+  handleClickItem(item, status) {
+    this.props.onCheckItem({
+      item,
+      status,
+    });
+  }
+
+  componentWillMount() {
+    this.props.onGetList();
+  }
+
+  componentWillUpdate() {
+  }
+
   render() {
     const {
       modalVisible,
       buttons,
       todoList,
+      clearModalVisible,
     } = this.props.todo;
     return (
       <View class='index'>
-        <List dataList={todoList} />
+        <List 
+          dataList={todoList}
+          onClickItem={this.handleClickItem}
+        />
         <wux-floating-button
           position='bottomRight'
           theme='positive'
@@ -109,6 +156,12 @@ class Index extends Taro.Component {
           onCancel={this.handleModalCancel}
           onConfirm={this.handleModalConfirm}
         ></FnDialog>
+        <Modal 
+          modalVisible={clearModalVisible}
+          content='确认清空所有待办事项吗？'
+          onConfirm={this.handleCModalConfirm}
+          onCancel={this.handleCModalCancle}
+        />
       </View>
     );
   }

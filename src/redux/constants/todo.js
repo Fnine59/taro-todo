@@ -1,3 +1,6 @@
 export const ADD = 'ADD'
 export const SHOWMODAL = 'SHOWMODAL'
 export const HIDEMODAL = 'HIDEMODAL'
+export const CLEARTODO = 'CLEARTODO'
+export const GETLIST = 'GETLIST'
+export const CHECKITEM = 'CHECKITEM'
