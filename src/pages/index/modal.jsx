@@ -46,6 +46,8 @@ export default class FnDialog extends Taro.Component {
       <AtModal 
         isOpened={this.props.modalVisible}
         onClose={this.handleClose}
+        // 待官方npm包更新后起作用
+        closeOnClickOverlay={false}
       >
         <AtModalHeader>{this.props.title}</AtModalHeader>
         <AtModalContent>
